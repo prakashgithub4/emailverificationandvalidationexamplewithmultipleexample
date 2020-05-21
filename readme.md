@@ -71,3 +71,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # emailverificationandvalidationexamplewithmultipleexample
+
+# Email varifiction process
+step 1: install laravel from documentation given command 
+
+step 2: migrate user table by using migrate commnad
+
+step 3: apply authentication by using auth command
+step 4: open user model and check
+step 5: Auth::routes(['verify'=>true]); this in route page
+then setup smtp configuration in env page
