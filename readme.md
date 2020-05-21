@@ -79,5 +79,7 @@ step 2: migrate user table by using migrate commnad
 
 step 3: apply authentication by using auth command
 step 4: open user model and check
-step 5: Auth::routes(['verify'=>true]); this in route page
+
+step 5: Auth::routes(['verify'=>true]); 
+this in route page
 then setup smtp configuration in env page
