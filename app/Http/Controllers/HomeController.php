@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Member;
+use View;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = Member::all();
+        return view('home',compact('data'));
+    }
+    public function store(Request $request){
+        $data =$request->all();
+        $data= Member::storemem($data);
+        return response()->json(["msg"=>"successfully Added","data"=>$data],200);
+
     }
 }
