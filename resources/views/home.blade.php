@@ -66,7 +66,7 @@
                           <tbody id="row">
                             <?php $count  = 1; ?>
                             @foreach($data as $datas)
-                            <tr >
+                            <tr id ="row_{{$datas->id}}">
                              
                               <td><input type="checkbox" name="ids" id="id_{{$count}}" class=".subcheck" value="{{$datas->id}}" /></td>
                               <th scope="row">{{$count}}</th>
@@ -208,30 +208,39 @@ function check_uncheck_checkbox(isChecked) {
 
 
       function getids(){
-      
+        
         var val = [];
         $(':checkbox:checked').each(function(i){
           val[i] = $(this).val();
         });
        
        if(val.length > 0){
-
-       url = "{{url('/multipledelete')}}"+"/"+val
-        $.ajax({
-            url: url,
-            type: 'get', 
-            datatype: 'json'
-        })
-        .done(function (data) { 
-     
-            location.reload();
-         
-         })
+        var result = confirm("Want to delete?");
+           if(result)
+           {
+             url = "{{url('/multipledelete')}}"+"/"+val
+            $.ajax({
+                url: url,
+                type: 'get', 
+                datatype: 'json'
+            })
+            .done(function (data) { 
+             
+               for(let i=0;i<val.length;i++){
+                
+                     $("#row_"+val[i]).remove();
+               
+               }
+                  alert("Data deleted successfully");
+           
+             })
         .fail(function (jqXHR, textStatus, errorThrown) { 
 
          console.log('error');
          });
-        }
+       }
+      
+         }
        
        else{
 
