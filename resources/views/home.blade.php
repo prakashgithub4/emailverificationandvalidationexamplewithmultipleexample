@@ -99,10 +99,8 @@ let regxphone =/^\d{10}$/;
 var count = 1;
 var errors=0;
 
-//name.css({"border-color":"red"});
    let fields =[name,email,phone,gender];
    var ids =[$("#name"), $("#email"), $("#phone"),$("#gender")];
-//   let count = 0;
 
  for(let i= 0;i<fields.length;i++){
    
@@ -195,20 +193,7 @@ var errors=0;
          });
   }
 
-// let ids = [];
-//   function getIds(id){
-//     for(let i = 1;i<=count;i++){
-//         if($(this).prop('checked', true)){
-//           ids[i] = id; 
-//         }
-//     }
- 
-    
 
-//   }
-//   function selectdelete(){
-//     alert(ids);
-//   }
 function check_uncheck_checkbox(isChecked) {
   if(isChecked) {
     $('input[name="ids"]').each(function() { 
@@ -256,13 +241,4 @@ function check_uncheck_checkbox(isChecked) {
 
       }
    
-    
-  
-
-
-
-    
-      
-  
-  
 </script>
