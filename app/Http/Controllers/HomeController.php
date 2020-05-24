@@ -34,4 +34,14 @@ class HomeController extends Controller
         return response()->json(["msg"=>"successfully Added","data"=>$data],200);
 
     }
+    public function multipledelete($id){
+      
+
+       $eachids = explode(",",$id);
+      for($i = 0;$i<count($eachids);$i++){
+         $member=Member::multipledelete($eachids[$i]);
+      }
+        
+
+    }
 }

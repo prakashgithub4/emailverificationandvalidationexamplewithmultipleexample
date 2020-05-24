@@ -19,3 +19,4 @@ Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/store', 'HomeController@store')->name('store');
+Route::get('/multipledelete/{id?}', 'HomeController@multipledelete');

@@ -52,10 +52,11 @@
                     </form>
                 </div>
                <div class="container">
-                 <table class="table">
+                 <table id="tab" class="table">
                           <thead>
                             <tr>
-                              <th scope="col">&nbsp;</th>
+                              <td>&nbsp;</td>
+                             <!--  <th scope="col"><input type="checkbox" class="selectall" onClick="check_uncheck_checkbox(this.checked);"/></th> -->
                               <th scope="col">SL</th>
                               <th scope="col">Name</th>
                               <th scope="col">Email</th>
@@ -67,7 +68,7 @@
                             @foreach($data as $datas)
                             <tr >
                              
-                              <td><input type="checkbox" name="ids[]"/></td>
+                              <td><input type="checkbox" name="ids" id="id_{{$count}}" class=".subcheck" value="{{$datas->id}}" /></td>
                               <th scope="row">{{$count}}</th>
                               <td>{{$datas->name}}</td>
                               <td>{{$datas->email}}</td>
@@ -79,12 +80,13 @@
                           </tbody>
                         </table>
                </div>       
-
+              <input type="button" class="form-control-file btn btn-primary" onclick="getids()" value="Delete">
             </div>
         </div>
     </div>
 </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
 function validation(id = null){
@@ -184,7 +186,7 @@ var errors=0;
         .done(function (data) { 
 
           
-          $("#row").append("<tr><td><input type='checkbox' name='ids[]'/></td><th scope='row'>"+count+"</td><td>"+data.data.name+"</th><td>"+data.data.email+"</td><td>"+data.data.gender+"</td></tr>")
+          $("#row").append("<tr><td><input type='checkbox' name='ids[]' value='"+data.data.id+"'/></td><th scope='row'>"+count+"</td><td>"+data.data.name+"</th><td>"+data.data.email+"</td><td>"+data.data.gender+"</td></tr>")
             count++;
          })
         .fail(function (jqXHR, textStatus, errorThrown) { 
@@ -192,4 +194,75 @@ var errors=0;
          console.log('error');
          });
   }
+
+// let ids = [];
+//   function getIds(id){
+//     for(let i = 1;i<=count;i++){
+//         if($(this).prop('checked', true)){
+//           ids[i] = id; 
+//         }
+//     }
+ 
+    
+
+//   }
+//   function selectdelete(){
+//     alert(ids);
+//   }
+function check_uncheck_checkbox(isChecked) {
+  if(isChecked) {
+    $('input[name="ids"]').each(function() { 
+      this.checked = true; 
+    });
+  } else {
+    $('input[name="ids"]').each(function() {
+      this.checked = false;
+    });
+  }
+}
+
+
+      function getids(){
+      
+        var val = [];
+        $(':checkbox:checked').each(function(i){
+          val[i] = $(this).val();
+        });
+       
+       if(val.length > 0){
+
+       url = "{{url('/multipledelete')}}"+"/"+val
+        $.ajax({
+            url: url,
+            type: 'get', 
+            datatype: 'json'
+        })
+        .done(function (data) { 
+     
+            location.reload();
+         
+         })
+        .fail(function (jqXHR, textStatus, errorThrown) { 
+
+         console.log('error');
+         });
+        }
+       
+       else{
+
+        alert("Please click one of these item");
+       }
+       
+
+      }
+   
+    
+  
+
+
+
+    
+      
+  
+  
 </script>

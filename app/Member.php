@@ -20,4 +20,10 @@ class Member extends Model
     	$m->save();
         return $m->toArray();
     }
+    public static function multipledelete($id){
+         
+         $member = Member::find($id);
+         $member->delete();
+         return $member->toArray();
+    }
 }
