@@ -20,3 +20,7 @@ Auth::routes(['verify'=>true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/store', 'HomeController@store')->name('store');
 Route::get('/multipledelete/{id?}', 'HomeController@multipledelete');
+Route::get('/multile/form',function(){
+  return view('multiple');
+});
+Route::get('addmore/{id?}','MultipleformData@index');
