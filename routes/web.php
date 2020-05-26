@@ -24,3 +24,5 @@ Route::get('/multile/form',function(){
   return view('multiple');
 });
 Route::get('addmore/{id?}','MultipleformData@index');
+
+Route::post('addmore/save','MultipleformData@save');

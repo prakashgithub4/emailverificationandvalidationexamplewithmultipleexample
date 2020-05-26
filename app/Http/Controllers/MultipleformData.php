@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Optional;
 
 class MultipleformData extends Controller
 {
@@ -38,4 +39,17 @@ class MultipleformData extends Controller
       	 	
       	
     }
+
+   public  function save(Request $request){
+     
+
+     $data['name']=$request->input('name');
+     $data['role']=$request->input('role');
+     $data['sub']=$request->input('sub');
+     $data['counter']=$request->input('counter');
+     Optional::optional_save($data);
+  
+      echo "success fully added";
+
+   }
 }
